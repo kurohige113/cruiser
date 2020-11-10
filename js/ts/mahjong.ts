@@ -192,7 +192,7 @@ class MahjongScoreTable {
             this.table[this.key(1, 110)] = new MahjongScoreElement('', 3600, 900, 1800);
             
             this.table[this.key(2, 20)]  = new MahjongScoreElement('', 1300,  400,  700);
-            this.table[this.key(2, 25)]  = new MahjongScoreElement('', 1600,  800,  400);
+            this.table[this.key(2, 25)]  = new MahjongScoreElement('', 1600,  400,  800);
             this.table[this.key(2, 30)]  = new MahjongScoreElement('', 2000,  500, 1000);
             this.table[this.key(2, 40)]  = new MahjongScoreElement('', 2600,  700, 1300);
             this.table[this.key(2, 50)]  = new MahjongScoreElement('', 3200,  800, 1600);
