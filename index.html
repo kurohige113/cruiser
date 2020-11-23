@@ -3,8 +3,69 @@
 <head>
     <meta charset="utf-8">
     <title>Hello World.</title>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
+
+    <div>
+        <span>役</span>
+        <div>
+            <div><label for="reach"><input type="checkbox" name="options" id="reach" />立直</label></div>
+            <div><label for="value_tiles_haku"><input type="checkbox" name="options" id="value_tiles_haku" />白</label></div>
+            <div><label for="value_tiles_hatsu"><input type="checkbox" name="options" id="value_tiles_hatsu" />撥</label></div>
+            <div><label for="value_tiles_chun"><input type="checkbox" name="options" id="value_tiles_chun" />中</label></div>
+            <div><label for="value_tiles_own_wind"><input type="checkbox" name="options" id="value_tiles_own_wind" />場風</label></div>
+            <div><label for="value_tiles_round_wind"><input type="checkbox" name="options" id="value_tiles_round_wind" />自風</label></div>
+            <div><label for="all_aimples"><input type="checkbox" name="options" id="all_aimples" />断ヤオ九</label></div>
+            <div><label for="all_runs"><input type="checkbox" name="options" id="all_runs" />平和</label></div>
+            <div><label for="concealed_self_draw"><input type="checkbox" name="options" id="concealed_self_draw" />門前自摸</label></div>
+            <div><label for="first_turn_win"><input type="checkbox" name="options" id="first_turn_win" />一発</label></div>
+            <div><label for="double_run"><input type="checkbox" name="options" id="double_run" />一盃口</label></div>
+            <div><label for="final_tile_win_own"><input type="checkbox" name="options" id="final_tile_win_own" />河底撈魚</label></div>
+            <div><label for="final_tile_win_other"><input type="checkbox" name="options" id="final_tile_win_other" />海底摸月</label></div>
+            <div><label for="kings_tile_draw"><input type="checkbox" name="options" id="kings_tile_draw" />嶺上開花</label></div>
+            <div><label for="add_a_quad"><input type="checkbox" name="options" id="add_a_quad" />搶槓</label></div>
+            <div><label for="double_reach"><input type="checkbox" name="options" id="double_reach" />ダブル立直</label></div>
+            <div><label for="all_triples"><input type="checkbox" name="options" id="all_triples" />対々和</label></div>
+            <div><label for="three_color_runs"><input type="checkbox" name="options" id="three_color_runs" />三色同順</label></div>
+            <div><label for="seven_pairs"><input type="checkbox" name="options" id="seven_pairs" />七対子</label></div>
+            <div><label for="full_straight"><input type="checkbox" name="options" id="full_straight" />一気通貫</label></div>
+            <div><label for="mixed_outside_hand"><input type="checkbox" name="options" id="mixed_outside_hand" />全帯</label></div>
+            <div><label for="three_concealed_triples"><input type="checkbox" name="options" id="three_concealed_triples" />三暗刻</label></div>
+            <div><label for="all_terminals_and_honors"><input type="checkbox" name="options" id="all_terminals_and_honors" />混老頭</label></div>
+            <div><label for="three_color_triples"><input type="checkbox" name="options" id="three_color_triples" />三色同刻</label></div>
+            <div><label for="three_quads"><input type="checkbox" name="options" id="three_quads" />三槓子</label></div>
+            <div><label for="little_dragons"><input type="checkbox" name="options" id="little_dragons" />小三元</label></div>
+            <div><label for="half_flush"><input type="checkbox" name="options" id="half_flush" />混一色</label></div>
+            <div><label for="pure_outside_hand"><input type="checkbox" name="options" id="pure_outside_hand" />純全帯幺</label></div>
+            <div><label for="2_double_runs"><input type="checkbox" name="options" id="2_double_runs" />ニ盃口</label></div>
+            <div><label for="full_flush"><input type="checkbox" name="options" id="full_flush" />清一色</label></div>
+            <div><label for="four_concealed_triples"><input type="checkbox" name="options" id="four_concealed_triples" />四暗刻</label></div>
+            <div><label for="thirteen_orphans"><input type="checkbox" name="options" id="thirteen_orphans" />国士無双</label></div>
+            <div><label for="big_dragons"><input type="checkbox" name="options" id="big_dragons" />大三元</label></div>
+            <div><label for="four_winds"><input type="checkbox" name="options" id="four_winds" />四喜和</label></div>
+            <div><label for="all_honors"><input type="checkbox" name="options" id="all_honors" />字一色</label></div>
+            <div><label for="all_terminals"><input type="checkbox" name="options" id="all_terminals" />清老頭</label></div>
+            <div><label for="blessing_of_earth"><input type="checkbox" name="options" id="blessing_of_earth" />地和</label></div>
+            <div><label for="all_green"><input type="checkbox" name="options" id="all_green" />緑一色</label></div>
+            <div><label for="nine_gates"><input type="checkbox" name="options" id="nine_gates" />九蓮宝燈</label></div>
+            <div><label for="four_quads"><input type="checkbox" name="options" id="four_quads" />四槓子</label></div>
+            <div><label for="blessing_of_heaven"><input type="checkbox" name="options" id="blessing_of_heaven" />天和</label></div>
+        </div>
+    </div>
+
+    <div>
+        <span>鳴きあり/なし</span>
+        <div><label for="is_open"><input type="checkbox" name="status" id="is_open" />鳴き</label></div>
+    </div>
+
+    <input type="button" id="calc" value="計算">
+    <div id="contents"></div>
+
+
+    <!--
     <div>
         <span>飜数</span>
         <select name="select1" id="select1">
@@ -41,6 +102,8 @@
     </div>
     <input type="button" id="calc" value="計算">
     <div id="contents"></div>
-    <script src="./js/dist/mahjong.js"></script>
+    -->
+
+    <script src="./js/dist/mahjong.js?p=(new Date()).getTime()"></script>
 </body>
 </html>
