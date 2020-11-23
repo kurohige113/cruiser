@@ -487,8 +487,8 @@ function test() {
 
     let options: NodeListOf<HTMLInputElement> = <NodeListOf<HTMLInputElement>>document.getElementsByName("options");
     let status: NodeListOf<HTMLInputElement> = <NodeListOf<HTMLInputElement>>document.getElementsByName("status");
-    let contents: HTMLInputElement = <HTMLInputElement>document.getElementById('contents');
-    contents.innerHTML = '';
+    let results: HTMLInputElement = <HTMLInputElement>document.getElementById('results');
+    results.innerHTML = '';
 
     console.log("--- 選択したステータスは以下の通りです ---");
     let isOpen = false;
@@ -507,14 +507,14 @@ function test() {
             let [hasError, name] = e.mahjongYakuList.list[key].getPrintFormat(isOpen);
             if (!hasError) {
                 console.log(name);
-                contents.innerHTML += '<div>' + name + '</div>';
+                results.innerHTML += '<div>' + name + '</div>';
             }
         }
     }
     console.log("--- 合計飜数は以下の通りです ---");
     const totalFaan = e.getTotalFaanValue(isOpen, keys);
     console.log(totalFaan);
-    contents.innerHTML += '<div>' + '合計:' + totalFaan + '飜' + '</div>';
+    results.innerHTML += '<div>' + '合計:' + totalFaan + '飜' + '</div>';
 }
 
 
@@ -523,10 +523,10 @@ function printScore(input1: number, input2: number) {
     const SCORE_TABLE_P = new MahjongScoreTable(true);
     const SCORE_TABLE_C = new MahjongScoreTable(false);
 
-    let contents: HTMLInputElement =<HTMLInputElement>document.getElementById('contents');
-    contents.innerHTML = '';
-    contents.innerHTML += '<div><span>親 </span>' + SCORE_TABLE_P.table[SCORE_TABLE_P.key(input1, input2)].getPrintFormat() + '</div>';
-    contents.innerHTML += '<div><span>子 </span>' + SCORE_TABLE_C.table[SCORE_TABLE_C.key(input1, input2)].getPrintFormat() + '</div>';
+    let results: HTMLInputElement =<HTMLInputElement>document.getElementById('results');
+    results.innerHTML = '';
+    results.innerHTML += '<div><span>親 </span>' + SCORE_TABLE_P.table[SCORE_TABLE_P.key(input1, input2)].getPrintFormat() + '</div>';
+    results.innerHTML += '<div><span>子 </span>' + SCORE_TABLE_C.table[SCORE_TABLE_C.key(input1, input2)].getPrintFormat() + '</div>';
 }
 
 //const input1: HTMLInputElement =<HTMLInputElement>document.getElementById('select1');

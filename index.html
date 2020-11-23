@@ -6,64 +6,898 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-</head>
-<body>
+    <meta name="viewport" content="width=360,initial-scale=1">
 
-    <div>
-        <span>役</span>
-        <div>
-            <div><label for="reach"><input type="checkbox" name="options" id="reach" />立直</label></div>
-            <div><label for="value_tiles_haku"><input type="checkbox" name="options" id="value_tiles_haku" />白</label></div>
-            <div><label for="value_tiles_hatsu"><input type="checkbox" name="options" id="value_tiles_hatsu" />撥</label></div>
-            <div><label for="value_tiles_chun"><input type="checkbox" name="options" id="value_tiles_chun" />中</label></div>
-            <div><label for="value_tiles_own_wind"><input type="checkbox" name="options" id="value_tiles_own_wind" />場風</label></div>
-            <div><label for="value_tiles_round_wind"><input type="checkbox" name="options" id="value_tiles_round_wind" />自風</label></div>
-            <div><label for="all_aimples"><input type="checkbox" name="options" id="all_aimples" />断ヤオ九</label></div>
-            <div><label for="all_runs"><input type="checkbox" name="options" id="all_runs" />平和</label></div>
-            <div><label for="concealed_self_draw"><input type="checkbox" name="options" id="concealed_self_draw" />門前自摸</label></div>
-            <div><label for="first_turn_win"><input type="checkbox" name="options" id="first_turn_win" />一発</label></div>
-            <div><label for="double_run"><input type="checkbox" name="options" id="double_run" />一盃口</label></div>
-            <div><label for="final_tile_win_own"><input type="checkbox" name="options" id="final_tile_win_own" />河底撈魚</label></div>
-            <div><label for="final_tile_win_other"><input type="checkbox" name="options" id="final_tile_win_other" />海底摸月</label></div>
-            <div><label for="kings_tile_draw"><input type="checkbox" name="options" id="kings_tile_draw" />嶺上開花</label></div>
-            <div><label for="add_a_quad"><input type="checkbox" name="options" id="add_a_quad" />搶槓</label></div>
-            <div><label for="double_reach"><input type="checkbox" name="options" id="double_reach" />ダブル立直</label></div>
-            <div><label for="all_triples"><input type="checkbox" name="options" id="all_triples" />対々和</label></div>
-            <div><label for="three_color_runs"><input type="checkbox" name="options" id="three_color_runs" />三色同順</label></div>
-            <div><label for="seven_pairs"><input type="checkbox" name="options" id="seven_pairs" />七対子</label></div>
-            <div><label for="full_straight"><input type="checkbox" name="options" id="full_straight" />一気通貫</label></div>
-            <div><label for="mixed_outside_hand"><input type="checkbox" name="options" id="mixed_outside_hand" />全帯</label></div>
-            <div><label for="three_concealed_triples"><input type="checkbox" name="options" id="three_concealed_triples" />三暗刻</label></div>
-            <div><label for="all_terminals_and_honors"><input type="checkbox" name="options" id="all_terminals_and_honors" />混老頭</label></div>
-            <div><label for="three_color_triples"><input type="checkbox" name="options" id="three_color_triples" />三色同刻</label></div>
-            <div><label for="three_quads"><input type="checkbox" name="options" id="three_quads" />三槓子</label></div>
-            <div><label for="little_dragons"><input type="checkbox" name="options" id="little_dragons" />小三元</label></div>
-            <div><label for="half_flush"><input type="checkbox" name="options" id="half_flush" />混一色</label></div>
-            <div><label for="pure_outside_hand"><input type="checkbox" name="options" id="pure_outside_hand" />純全帯幺</label></div>
-            <div><label for="2_double_runs"><input type="checkbox" name="options" id="2_double_runs" />ニ盃口</label></div>
-            <div><label for="full_flush"><input type="checkbox" name="options" id="full_flush" />清一色</label></div>
-            <div><label for="four_concealed_triples"><input type="checkbox" name="options" id="four_concealed_triples" />四暗刻</label></div>
-            <div><label for="thirteen_orphans"><input type="checkbox" name="options" id="thirteen_orphans" />国士無双</label></div>
-            <div><label for="big_dragons"><input type="checkbox" name="options" id="big_dragons" />大三元</label></div>
-            <div><label for="four_winds"><input type="checkbox" name="options" id="four_winds" />四喜和</label></div>
-            <div><label for="all_honors"><input type="checkbox" name="options" id="all_honors" />字一色</label></div>
-            <div><label for="all_terminals"><input type="checkbox" name="options" id="all_terminals" />清老頭</label></div>
-            <div><label for="blessing_of_earth"><input type="checkbox" name="options" id="blessing_of_earth" />地和</label></div>
-            <div><label for="all_green"><input type="checkbox" name="options" id="all_green" />緑一色</label></div>
-            <div><label for="nine_gates"><input type="checkbox" name="options" id="nine_gates" />九蓮宝燈</label></div>
-            <div><label for="four_quads"><input type="checkbox" name="options" id="four_quads" />四槓子</label></div>
-            <div><label for="blessing_of_heaven"><input type="checkbox" name="options" id="blessing_of_heaven" />天和</label></div>
+    <style>
+    body {
+        font: 16px/1.2 "Fira Sans", sans-serif;
+    }
+    
+    .toggle {
+        width: 5.5rem;
+        height: 1.5rem;
+        position: relative;
+    }
+    .toggle input {
+        opacity: 0;
+    }
+    .toggle label {
+        position: absolute;
+        background-color: #7a7675;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 3.125rem;
+        -webkit-transition: background-color .2s ease-in-out;
+        transition: background-color .2s ease-in-out;
+    }
+    .toggle label:after {
+        content: "";
+        display: block;
+        width: 0.475rem;
+        height: 0.475rem;
+        border-radius: 3.125rem;
+        cursor: pointer;
+        position: absolute;
+        top: .5rem;
+        z-index: 1;
+        left: .5rem;
+        background-color: #FFFFFD;
+        -webkit-transition: left .2s ease-in-out;
+        transition: left .2s ease-in-out;
+    }
+    .toggle input[type=checkbox]:checked ~ label {
+        background-color: #4fbe79;
+    }
+    
+    .toggle input[type=checkbox]:checked ~ label:after {
+        left: 4.5rem;
+    }
+
+    /*ヘッダー*/
+    #site-header {
+        background: #fff;
+        position: fixed;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: -100px;
+        z-index: 1000;
+    }
+
+    /*メインコンテンツ*/
+    #contents {
+        margin-top: 100px;
+    }
+
+    /*横並べ*/
+    .flex {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+    }
+
+    /*作業ボタン*/
+    .operation-button-group {
+        margin-right: 1rem;
+    }
+    .operation-button {
+        width: 100%;
+        height: 2rem;
+    }
+
+    /*チェックカード*/
+    .check-card {
+        width: 160px;
+    }
+    .check-card .check-card-item {
+        position: relative;
+        width: 100%;
+        float: left;
+        font-size: 16px;
+        background: #3c9895;
+        overflow: hidden;
+    }
+    .check-card label {
+        display: block;
+        position: absolute;
+        height: 150px;
+        width: 100%;
+        z-index: 100;
+        cursor: pointer;
+    }
+    .check-card .check-card-body {
+        height: 150px;
+        color: #fff;
+        z-index: 2;
+        position: relative;
+    }
+    .check-card .check-card-body-in {
+        padding: 0px 20px 20px;
+    }
+    .check-card .check-card-title {
+        font-size: 20px;
+    }
+    .check-card .check-card-bg,
+    .check-card .check-card-toggle {
+        position: relative;
+        background: #2e2d37;
+        width: 36px;
+        height: 36px;
+        top: 10px;
+        left: 10px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .check-card .check-card-bg {
+        position: absolute;
+        background: #2e2d37;
+        -webkit-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+        -webkit-transform:scale(1);
+        transform:scale(1);
+        z-index: 0;
+    }
+    .check-card .check-card-toggle span {
+        position: absolute;
+        display: block;
+        width: 20px;
+        margin-left: -10px;
+        height: 1px;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        -webkit-transition: all .4s ease-out;
+        transition: all .4s ease-out;
+        -webkit-transform: rotate(-270deg);
+        transform: rotate(-270deg);
+    }
+    .check-card .check-card-toggle span:first-child {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .check-card .check-card-cancel {
+        font-size: 18px;
+        border-top: solid 1px #fff;
+        border-bottom: solid 1px #fff;
+        padding: 10px 0 7px;
+        text-align: center;
+        position: absolute;
+        bottom: -50px;
+        margin: 0 7%;
+        width: 86%;
+        -webkit-transition: all .3s cubic-bezier(0.5, -0.8, 0.5, 1.8);
+        transition: all .3s cubic-bezier(0.5, -0.8, 0.5, 1.8);
+    }
+    .check-card input[type=checkbox] {
+        display: none;
+    }
+    .check-card input[type=checkbox]:checked ~ .check-card-body .check-card-toggle span {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    .check-card input[type=checkbox]:checked ~ .check-card-body .check-card-toggle span:first-child {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    .check-card input[type=checkbox]:checked ~ .check-card-bg {
+        -webkit-transform:scale(25);
+        transform:scale(25);
+    }
+    .check-card input[type=checkbox]:checked ~ .check-card-body .check-card-cancel {
+        bottom: 30px;
+    }
+
+    /*スライダー*/
+    .slider {
+        overflow: hidden;
+    }
+    .slides {
+        display: flex;
+        overflow-x: auto;
+        border-radius: 5px;  
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-points-x: repeat(300px);
+        scroll-snap-type: mandatory;
+    }
+    .slides::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    .slides::-webkit-scrollbar-thumb {
+        background: black;
+        border-radius: 10px;
+    }
+    .slides::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .slides > div {
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: #eee;
+        transform-origin: center center;
+        transform: scale(1);
+        transition: transform 0.5s;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 100px;
+    }
+    </style>
+
+</head>
+<body>    
+    <div id="site-header">
+        <div class="flex">
+            <div>
+                <span>親</span>
+                <div class="toggle">
+                    <input type="checkbox" name="status" id="is_parent" />
+                    <label for="is_parent"></label>
+                </div>
+            </div>
+            <div>
+                <span>鳴き有</span>
+                <div class="toggle">
+                    <input type="checkbox" name="status" id="is_open" />
+                    <label for="is_open"></label>
+                </div>
+            </div>
+            <div>
+                <span>ドラ</span>
+                <select name="dora" id="dora">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                </select>
+            </div>
+            <div>
+                <span>符数</span>
+                <select name="point" id="point">
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                    <option value="110">110</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex operation-button-group">
+            <input type="button" class="operation-button" id="clear" value="クリア">
+            <input type="button" class="operation-button" id="calc" value="計算">
         </div>
     </div>
+    <div id="contents">
+        <div>1飜</div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="reach" name="options" />
+                            <label for="reach" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">立直</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="value_tiles_haku" name="options" />
+                            <label for="value_tiles_haku" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">白</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="value_tiles_hatsu" name="options" />
+                            <label for="value_tiles_hatsu" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">撥</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="value_tiles_chun" name="options" />
+                            <label for="value_tiles_chun" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">中</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="value_tiles_own_wind" name="options" />
+                            <label for="value_tiles_own_wind" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">場風</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="value_tiles_round_wind" name="options" />
+                            <label for="value_tiles_round_wind" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">自風</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_aimples" name="options" />
+                            <label for="all_aimples" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">断ヤオ九</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_runs" name="options" />
+                            <label for="all_runs" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">平和</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="concealed_self_draw" name="options" />
+                            <label for="concealed_self_draw" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">門前自摸</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="first_turn_win" name="options" />
+                            <label for="first_turn_win" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">一発</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="double_run" name="options" />
+                            <label for="double_run" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">一盃口</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="final_tile_win_own" name="options" />
+                            <label for="final_tile_win_own" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">河底撈魚</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="final_tile_win_other" name="options" />
+                            <label for="final_tile_win_other" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">海底摸月</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="kings_tile_draw" name="options" />
+                            <label for="kings_tile_draw" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">嶺上開花</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="add_a_quad" name="options" />
+                            <label for="add_a_quad" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">搶槓</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>2飜</div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="double_reach" name="options" />
+                            <label for="double_reach" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">ダブル立直</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_triples" name="options" />
+                            <label for="all_triples" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">対々和</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="three_color_runs" name="options" />
+                            <label for="three_color_runs" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">三色同順</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="seven_pairs" name="options" />
+                            <label for="seven_pairs" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">七対子</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="full_straight" name="options" />
+                            <label for="full_straight" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">一気通貫</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="mixed_outside_hand" name="options" />
+                            <label for="mixed_outside_hand" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">全帯</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="three_concealed_triples" name="options" />
+                            <label for="three_concealed_triples" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">三暗刻</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_terminals_and_honors" name="options" />
+                            <label for="all_terminals_and_honors" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">混老頭</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="three_color_triples" name="options" />
+                            <label for="three_color_triples" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">三色同刻</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="three_quads" name="options" />
+                            <label for="three_quads" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">三槓子</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="little_dragons" name="options" />
+                            <label for="little_dragons" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">小三元</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>3飜</div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="half_flush" name="options" />
+                            <label for="half_flush" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">混一色</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="pure_outside_hand" name="options" />
+                            <label for="pure_outside_hand" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">純全帯幺</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="2_double_runs" name="options" />
+                            <label for="2_double_runs" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">ニ盃口</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>6飜</div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="full_flush" name="options" />
+                            <label for="full_flush" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">清一色</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>13飜</div>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="four_concealed_triples" name="options" />
+                            <label for="four_concealed_triples" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">四暗刻</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="thirteen_orphans" name="options" />
+                            <label for="thirteen_orphans" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">国士無双</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="big_dragons" name="options" />
+                            <label for="big_dragons" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">大三元</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="four_winds" name="options" />
+                            <label for="four_winds" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">四喜和</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_honors" name="options" />
+                            <label for="all_honors" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">字一色</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_terminals" name="options" />
+                            <label for="all_terminals" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">清老頭</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="blessing_of_earth" name="options" />
+                            <label for="blessing_of_earth" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">地和</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="all_green" name="options" />
+                            <label for="all_green" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">緑一色</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="nine_gates" name="options" />
+                            <label for="nine_gates" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">九蓮宝燈</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="four_quads" name="options" />
+                            <label for="four_quads" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">四槓子</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-card">
+                        <div class="check-card-item">
+                            <input type="checkbox" id="blessing_of_heaven" name="options" />
+                            <label for="blessing_of_heaven" ></label>
+                            <div class="check-card-bg"></div>
+                            <div class="check-card-body">
+                                <div class="check-card-toggle"><span></span><span></span></div>
+                                <div class="check-card-body-in"><h3 class="check-card-title">天和</h3></div>
+                                <div class="check-card-cancel">CANCEL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div>
-        <span>鳴きあり/なし</span>
-        <div><label for="is_open"><input type="checkbox" name="status" id="is_open" />鳴き</label></div>
+        <div id="results"></div>
     </div>
-
-    <input type="button" id="calc" value="計算">
-    <div id="contents"></div>
-
 
     <!--
     <div>
