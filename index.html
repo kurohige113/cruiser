@@ -11,6 +11,8 @@
     <style>
     body {
         font: 16px/1.2 "Fira Sans", sans-serif;
+        background-color:rgb(233, 243, 217);
+        padding: 1em;
     }
     
     .toggle {
@@ -31,6 +33,7 @@
         border-radius: 3.125rem;
         -webkit-transition: background-color .2s ease-in-out;
         transition: background-color .2s ease-in-out;
+        cursor: pointer;
     }
     .toggle label:after {
         content: "";
@@ -61,7 +64,9 @@
         position: fixed;
         justify-content: space-between;
         width: 100%;
-        margin-top: -100px;
+        top: 0;
+        left: 0;
+        padding: 1em 1em 0em 1em;
         z-index: 1000;
     }
 
@@ -81,11 +86,12 @@
 
     /*作業ボタン*/
     .operation-button-group {
-        margin-right: 1rem;
+        padding-right: 2em;
     }
     .operation-button {
         width: 100%;
         height: 2rem;
+        cursor: pointer;
     }
 
     /*チェックカード*/
@@ -194,6 +200,9 @@
     .slider {
         overflow: hidden;
     }
+    .slide {
+        padding: 1px;
+    }
     .slides {
         display: flex;
         overflow-x: auto;
@@ -230,8 +239,11 @@
     </style>
 
 </head>
-<body>    
+<body>
     <div id="site-header">
+        <div>
+            <div>麻雀点数計算</div>
+        </div>
         <div class="flex">
             <div>
                 <span>親</span>
@@ -772,6 +784,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="thirteen_orphans" name="options" />
@@ -784,6 +798,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="big_dragons" name="options" />
@@ -796,6 +812,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="four_winds" name="options" />
@@ -808,6 +826,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="all_honors" name="options" />
@@ -820,6 +840,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="all_terminals" name="options" />
@@ -832,6 +854,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="blessing_of_earth" name="options" />
@@ -844,6 +868,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="all_green" name="options" />
@@ -856,6 +882,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="nine_gates" name="options" />
@@ -868,6 +896,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="four_quads" name="options" />
@@ -880,6 +910,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="slide">
                     <div class="check-card">
                         <div class="check-card-item">
                             <input type="checkbox" id="blessing_of_heaven" name="options" />
