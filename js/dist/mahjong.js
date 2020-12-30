@@ -1,4 +1,15 @@
 "use strict";
+/**
+ * キーワード
+ * faan: 翻
+ * parent: 親
+ * child: 子
+ * open: 副露(フーロ)
+ * score: 点数
+ * point: 符数
+ * bonus: ドラ
+ * hand: 手牌
+ */
 //入力した飜数と符数から点数計算ができる
 // スコアクラス
 class MahjongScoreElement {
@@ -406,15 +417,28 @@ class MahjongCalculator {
     }
     //成立した役の一覧を取得する todo handを受け取る
     //合計飜数を取得する
-    getTotalFaanValue(isOpen, keys) {
+    getTotalFaanValue(isOpen, keys, bonus) {
         let result = 0;
         for (let i = 0; i < keys.length; i++) {
             result += this.mahjongYakuList.list[keys[i]].getFaanValue(isOpen);
         }
+        result += bonus;
         return result;
     }
+    //合計点数を取得する
+    getScore(isParent, faanValue, point) {
+        let scoreTable;
+        if (isParent) {
+            scoreTable = this.mahjongScoreTableParent;
+        }
+        else {
+            scoreTable = this.mahjongScoreTableChild;
+        }
+        let key = scoreTable.key(faanValue, point);
+        let scoreElement = scoreTable.table[key];
+        return scoreElement.getPrintFormat();
+    }
 }
-//TODO 画面にチェックボックス作る
 // チェックされてる奴から一致する役の飜数を合計して表示する
 // 
 // 形から符数を自動判定
@@ -422,16 +446,33 @@ function test() {
     var e = new MahjongCalculator();
     let options = document.getElementsByName("options");
     let status = document.getElementsByName("status");
+    let bonus = document.getElementById("bonus");
+    let point = document.getElementById("point");
     let results = document.getElementById('results');
     results.innerHTML = '';
-    console.log("--- 選択したステータスは以下の通りです ---");
+    // flags
     let isOpen = false;
+    let isParent = false;
+    let bonusValue = 0;
+    let pointValue = 0;
+    console.log("--- 選択したステータスは以下の通りです ---");
     for (let i = 0; i < status.length; i++) {
         if (status[i].checked) {
             console.log(status[i].id);
-            isOpen = true;
+            if (status[i].id == 'is_parent') {
+                isParent = true;
+            }
+            if (status[i].id == 'is_open') {
+                isOpen = true;
+            }
         }
     }
+    console.log("--- 選択したドラは以下の通りです ---");
+    console.log(bonus.value);
+    bonusValue = Number(bonus.value);
+    console.log("--- 選択した符数は以下の通りです ---");
+    console.log(point.value);
+    pointValue = Number(point.value);
     console.log("--- 選択したオプションは以下の通りです ---");
     let keys = [];
     for (let i = 0; i < options.length; i++) {
@@ -445,23 +486,29 @@ function test() {
             }
         }
     }
-    console.log("--- 合計飜数は以下の通りです ---");
-    const totalFaan = e.getTotalFaanValue(isOpen, keys);
+    if (bonusValue != 0) {
+        results.innerHTML += '<div>ドラ' + bonusValue + '(' + bonusValue + '飜)</div>';
+    }
+    console.log("--- 合計飜数は以下の通りです! ---");
+    const totalFaan = e.getTotalFaanValue(isOpen, keys, bonusValue);
     console.log(totalFaan);
-    results.innerHTML += '<div>' + '合計:' + totalFaan + '飜' + '</div>';
+    const score = e.getScore(isParent, totalFaan, pointValue);
+    console.log(score);
+    results.innerHTML += '<p>' + '合計:' + totalFaan + '飜' + '</p>';
+    results.innerHTML += '<p>' + score + '</p>';
+    let pop11 = document.getElementById('pop11');
+    pop11.checked = true;
 }
-// input1:飜数, input2:符数 => 点数
-function printScore(input1, input2) {
-    const SCORE_TABLE_P = new MahjongScoreTable(true);
-    const SCORE_TABLE_C = new MahjongScoreTable(false);
-    let results = document.getElementById('results');
-    results.innerHTML = '';
-    results.innerHTML += '<div><span>親 </span>' + SCORE_TABLE_P.table[SCORE_TABLE_P.key(input1, input2)].getPrintFormat() + '</div>';
-    results.innerHTML += '<div><span>子 </span>' + SCORE_TABLE_C.table[SCORE_TABLE_C.key(input1, input2)].getPrintFormat() + '</div>';
-}
-//const input1: HTMLInputElement =<HTMLInputElement>document.getElementById('select1');
-//const input2: HTMLInputElement =<HTMLInputElement>document.getElementById('select2');
 const calc = document.getElementById('calc');
-//calc.addEventListener("click", (e:Event) => printScore(Number(input1.value), Number(input2.value)));
 calc.addEventListener("click", (e) => test());
+// フッター
+// ヘッダーのしたは少し開ける
+// クリアボタンのjs
+// 競合不可能役の選択不可
+// モーダルの表示内容
+// モーダルの閉じるボタンは右上か右下がいい
+// 役のボタンちょっとでかいかな
+// 計算ボタンのCSS
+// スマホはハンごとにタブ表示にする
+// ドラも別タブにする
 //# sourceMappingURL=mahjong.js.map
