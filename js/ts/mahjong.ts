@@ -532,7 +532,6 @@ class MahjongCalculator {
         if (faanValue >= 13) {
             faanValue = 13;
         }
-        console.log(faanValue, point);
         let scoreElement: MahjongScoreElement = scoreTable.fetchScore(faanValue, point);
         return scoreElement.getPrintFormat();
     }
