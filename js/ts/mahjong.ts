@@ -8,10 +8,12 @@
  * point: 符数
  * bonus: ドラ
  * hand: 手牌
+ * ~Value: Number型
  */
-//入力した飜数と符数から点数計算ができる
 
-// スコアクラス
+/**
+ * スコアクラス
+ */
 class MahjongScoreElement {
     name: string;
     score: number;
@@ -31,7 +33,9 @@ class MahjongScoreElement {
     }
 }
 
-// スコアテーブルクラス
+/**
+ * スコアテーブルクラス
+ */
 class MahjongScoreTable {
     isParent: boolean;
     table: { [key: string]: MahjongScoreElement; } = {};
@@ -350,12 +354,29 @@ class MahjongScoreTable {
         }
     }
 
+    /**
+     * テーブルのキーを生成します。
+     * @param faanValue 飜数
+     * @param point 符数
+     */
     key(faanValue: number, point: number): string {
         return faanValue + '_' + point;
     }
+
+    /**
+     * テーブルから点数を取得します。
+     * @param faanValue 飜数
+     * @param point 符数
+     */
+    fetchScore(faanValue: number, point: number): MahjongScoreElement {
+        let key = this.key(faanValue, point);
+        return this.table[key];
+    }
 }
 
-// 役クラス
+/**
+ * 役クラス
+ */
 class MahjongYakuElement {
     key: string;//キー
     name: string;//役
@@ -400,7 +421,9 @@ class MahjongYakuElement {
     }
 }
 
-// 役一覧クラス
+/**
+ * 役一覧クラス
+ */
 class MahjongYakuList {
     list: { [key: string]: MahjongYakuElement; } = {};
 
@@ -462,7 +485,9 @@ class Hand {
     //todo
 }
 
-// 計算機クラス
+/**
+ * 計算機クラス
+ */
 class MahjongCalculator {
     mahjongYakuList: MahjongYakuList;
     mahjongScoreTableParent: MahjongScoreTable;
@@ -476,7 +501,12 @@ class MahjongCalculator {
 
     //成立した役の一覧を取得する todo handを受け取る
 
-    //合計飜数を取得する
+    /**
+     * 合計飜数を取得する
+     * @param isOpen 副露しているかどうか
+     * @param keys 役のキーの配列
+     * @param bonus ドラ数
+     */
     getTotalFaanValue(isOpen: boolean, keys: string[], bonus: number): number {
         let result = 0;
         for (let i=0; i<keys.length; i++) {
@@ -486,7 +516,12 @@ class MahjongCalculator {
         return result;
     }
 
-    //合計点数を取得する
+    /**
+     * 合計点数を取得する
+     * @param isParent 親かどうか
+     * @param faanValue 飜数
+     * @param point 符数
+     */
     getScore(isParent: boolean, faanValue: number, point: number) {
         let scoreTable: MahjongScoreTable;
         if (isParent) {
@@ -494,8 +529,11 @@ class MahjongCalculator {
         } else {
             scoreTable = this.mahjongScoreTableChild;
         }
-        let key: string = scoreTable.key(faanValue, point);
-        let scoreElement: MahjongScoreElement = scoreTable.table[key];
+        if (faanValue >= 13) {
+            faanValue = 13;
+        }
+        console.log(faanValue, point);
+        let scoreElement: MahjongScoreElement = scoreTable.fetchScore(faanValue, point);
         return scoreElement.getPrintFormat();
     }
     

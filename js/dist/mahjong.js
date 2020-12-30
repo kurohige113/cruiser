@@ -9,9 +9,11 @@
  * point: 符数
  * bonus: ドラ
  * hand: 手牌
+ * ~Value: Number型
  */
-//入力した飜数と符数から点数計算ができる
-// スコアクラス
+/**
+ * スコアクラス
+ */
 class MahjongScoreElement {
     constructor(name, score, paymentChild, paymentParent) {
         this.name = name;
@@ -24,7 +26,9 @@ class MahjongScoreElement {
         return this.name + this.score + "点" + "(" + payment + ")";
     }
 }
-// スコアテーブルクラス
+/**
+ * スコアテーブルクラス
+ */
 class MahjongScoreTable {
     constructor(isParent) {
         this.table = {};
@@ -316,11 +320,27 @@ class MahjongScoreTable {
             this.table[this.key(13, 110)] = new MahjongScoreElement('役満', 32000, 8000, 16000);
         }
     }
+    /**
+     * テーブルのキーを生成します。
+     * @param faanValue 飜数
+     * @param point 符数
+     */
     key(faanValue, point) {
         return faanValue + '_' + point;
     }
+    /**
+     * テーブルから点数を取得します。
+     * @param faanValue 飜数
+     * @param point 符数
+     */
+    fetchScore(faanValue, point) {
+        let key = this.key(faanValue, point);
+        return this.table[key];
+    }
 }
-// 役クラス
+/**
+ * 役クラス
+ */
 class MahjongYakuElement {
     constructor(key, name, faanValue, isConcealed, isDownFaan) {
         this.key = key;
@@ -354,7 +374,9 @@ class MahjongYakuElement {
         return [hasError, name + "(" + faan + "飜)"];
     }
 }
-// 役一覧クラス
+/**
+ * 役一覧クラス
+ */
 class MahjongYakuList {
     constructor() {
         this.list = {};
@@ -408,7 +430,9 @@ class MahjongYakuList {
 }
 class Hand {
 }
-// 計算機クラス
+/**
+ * 計算機クラス
+ */
 class MahjongCalculator {
     constructor() {
         this.mahjongYakuList = new MahjongYakuList();
@@ -416,7 +440,12 @@ class MahjongCalculator {
         this.mahjongScoreTableChild = new MahjongScoreTable(false);
     }
     //成立した役の一覧を取得する todo handを受け取る
-    //合計飜数を取得する
+    /**
+     * 合計飜数を取得する
+     * @param isOpen 副露しているかどうか
+     * @param keys 役のキーの配列
+     * @param bonus ドラ数
+     */
     getTotalFaanValue(isOpen, keys, bonus) {
         let result = 0;
         for (let i = 0; i < keys.length; i++) {
@@ -425,7 +454,12 @@ class MahjongCalculator {
         result += bonus;
         return result;
     }
-    //合計点数を取得する
+    /**
+     * 合計点数を取得する
+     * @param isParent 親かどうか
+     * @param faanValue 飜数
+     * @param point 符数
+     */
     getScore(isParent, faanValue, point) {
         let scoreTable;
         if (isParent) {
@@ -434,8 +468,11 @@ class MahjongCalculator {
         else {
             scoreTable = this.mahjongScoreTableChild;
         }
-        let key = scoreTable.key(faanValue, point);
-        let scoreElement = scoreTable.table[key];
+        if (faanValue >= 13) {
+            faanValue = 13;
+        }
+        console.log(faanValue, point);
+        let scoreElement = scoreTable.fetchScore(faanValue, point);
         return scoreElement.getPrintFormat();
     }
 }
