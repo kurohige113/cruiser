@@ -368,9 +368,13 @@ class MahjongScoreTable {
      * @param faanValue 飜数
      * @param point 符数
      */
-    fetchScore(faanValue: number, point: number): MahjongScoreElement {
-        let key = this.key(faanValue, point);
-        return this.table[key];
+    fetchScore(faanValue: number, point: number): MahjongScoreElement|null {
+        const key = this.key(faanValue, point);
+        const score = this.table[key];
+        if (score) {
+            return score;
+        }
+        return null;
     }
 }
 
@@ -407,6 +411,23 @@ class MahjongYakuElement {
         this.notCombinedElements = [];
     }
 
+    //複合するかどうか
+    isCombined(keys: string[]) {
+        const combineds = this.notCombinedElements.filter(x => keys.includes(x.element.getKey()));
+        const isNone = combineds.findIndex(x => x.type == MahjongYakuNotConbinedPairType.NONE) !== -1;
+        const isOther = combineds.findIndex(x => x.type == MahjongYakuNotConbinedPairType.OTHER) !== -1;
+
+        if (isNone || isOther) {
+            return false;
+        }
+
+        return true;
+    }
+
+    getNotCombinedElements() {
+        return this.notCombinedElements;
+    }
+
     addNotCombinedElement(element: MahjongYakuElement, type: MahjongYakuNotConbinedPairType) {
         this.notCombinedElements.push({'element':element, 'type':type});
     }
@@ -416,6 +437,10 @@ class MahjongYakuElement {
             return true;
         }
         return false;
+    }
+
+    getKey(): string {
+        return this.key;
     }
 
     getName(): string {
@@ -1001,7 +1026,7 @@ class MahjongYakuList {
         half_flush.addNotCombinedElement(three_color_runs, MahjongYakuNotConbinedPairType.NONE);
         half_flush.addNotCombinedElement(three_color_triples, MahjongYakuNotConbinedPairType.NONE);
         half_flush.addNotCombinedElement(pure_outside_hand, MahjongYakuNotConbinedPairType.NONE);
-        half_flush.addNotCombinedElement(full_flush, MahjongYakuNotConbinedPairType.OTHER);
+        half_flush.addNotCombinedElement(full_flush, MahjongYakuNotConbinedPairType.NONE);
         half_flush.addNotCombinedElement(four_concealed_triples, MahjongYakuNotConbinedPairType.OTHER);
         half_flush.addNotCombinedElement(thirteen_orphans, MahjongYakuNotConbinedPairType.OTHER);
         half_flush.addNotCombinedElement(big_dragons, MahjongYakuNotConbinedPairType.OTHER);
@@ -1078,7 +1103,7 @@ class MahjongYakuList {
         full_flush.addNotCombinedElement(little_dragons, MahjongYakuNotConbinedPairType.NONE);
         full_flush.addNotCombinedElement(all_terminals_and_honors, MahjongYakuNotConbinedPairType.NONE);
         full_flush.addNotCombinedElement(three_color_triples, MahjongYakuNotConbinedPairType.NONE);
-        full_flush.addNotCombinedElement(half_flush, MahjongYakuNotConbinedPairType.OWN);
+        full_flush.addNotCombinedElement(half_flush, MahjongYakuNotConbinedPairType.NONE);
         full_flush.addNotCombinedElement(four_concealed_triples, MahjongYakuNotConbinedPairType.OTHER);
         full_flush.addNotCombinedElement(thirteen_orphans, MahjongYakuNotConbinedPairType.OTHER);
         full_flush.addNotCombinedElement(big_dragons, MahjongYakuNotConbinedPairType.OTHER);
@@ -1521,6 +1546,10 @@ class MahjongYakuList {
         this.list['four_quads'] = four_quads;
         this.list['blessing_of_heaven'] = blessing_of_heaven;
     }
+
+    getMahjongYakuElement(key: string): MahjongYakuElement {
+        return this.list[key];
+    }
 }
 
 class Hand {
@@ -1545,7 +1574,9 @@ class MahjongCalculator {
 
 
     //成立チェックして成立した役を取得する
-    //todo
+    getYakuResult(keys: string[]):string[] {
+        return keys.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(keys));     
+    }
 
     /**
      * 合計飜数を取得する
@@ -1578,8 +1609,11 @@ class MahjongCalculator {
         if (faanValue >= 13) {
             faanValue = 13;
         }
-        let scoreElement: MahjongScoreElement = scoreTable.fetchScore(faanValue, point);
-        return scoreElement.getPrintFormat();
+        const scoreElement: MahjongScoreElement|null = scoreTable.fetchScore(faanValue, point);
+        if (scoreElement) {
+            return scoreElement.getPrintFormat();
+        }
+        return '得点が有りません。飜数または符数が不正です。';
     }
     
 }
@@ -1629,24 +1663,30 @@ function test() {
         if (options[i].checked) {
             let key = options[i].id;
             keys.push(key);
-            let [hasError, name] = e.mahjongYakuList.list[key].getPrintFormat(isOpen);
-            if (!hasError) {
-                console.log(name);
-                results.innerHTML += '<div>' + name + '</div>';
-            }
         }
     }
 
+    console.log("--- 成立した役は以下の通りです! ---");
+    let yakuResult = e.getYakuResult(keys);
+    console.log(yakuResult);
+
+    console.log("--- 合計飜数は以下の通りです! ---");
+    const totalFaan = e.getTotalFaanValue(isOpen, yakuResult, bonusValue);
+    console.log(totalFaan);
+
+    console.log("--- 合計点数は以下の通りです! ---");
+    const score = e.getScore(isParent, totalFaan, pointValue);
+    console.log(score);
+
+    console.log("--- POPUPのHTMLを整形します! ---");
+    yakuResult.forEach(key => {
+        let [hasError, name] = e.mahjongYakuList.list[key].getPrintFormat(isOpen);
+        results.innerHTML += '<div>' + name + '</div>';
+    });
+    
     if (bonusValue != 0) {
         results.innerHTML += '<div>ドラ' + bonusValue +　'(' + bonusValue + '飜)</div>';
     }
-
-    console.log("--- 合計飜数は以下の通りです! ---");
-    const totalFaan = e.getTotalFaanValue(isOpen, keys, bonusValue);
-    console.log(totalFaan);
-
-    const score = e.getScore(isParent, totalFaan, pointValue);
-    console.log(score);
     
     results.innerHTML += '<p>' + '合計:' + totalFaan + '飜' + '</p>';
     results.innerHTML += '<p>' + score + '</p>';
