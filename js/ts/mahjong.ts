@@ -405,7 +405,7 @@ class MahjongYakuElement {
     key: string;//キー
     name: string;//役
     faanValue: number;//飜数
-    isConcealed: boolean;//門前で成立する役か
+    isConcealed: boolean;//門前でのみ成立する役か
     isDownFaan: boolean;//食い下がりする役か
     notCombinedElements: MahjongYakuNotCombinedElement[];//複合しない役
 
@@ -1583,8 +1583,11 @@ class MahjongCalculator {
 
 
     //成立チェックして成立した役を取得する
-    getYakuResult(keys: string[]): string[] {
-        return keys.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(keys));     
+    getYakuResult(isOpen: boolean, keys: string[]): string[] {
+        let results =  keys;
+        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isConcealed ? !isOpen : true);     
+        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(results));
+        return results;
     }
 
     /**
@@ -1677,7 +1680,7 @@ function test() {
     }
 
     console.log("--- 成立した役は以下の通りです! ---");
-    let yakuResult = e.getYakuResult(keys);
+    let yakuResult = e.getYakuResult(isOpen, keys);
     console.log(yakuResult);
 
     console.log("--- 合計飜数は以下の通りです! ---");

@@ -1465,8 +1465,11 @@ class MahjongCalculator {
     }
     //成立した役の一覧を取得する todo handを受け取る
     //成立チェックして成立した役を取得する
-    getYakuResult(keys) {
-        return keys.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(keys));
+    getYakuResult(isOpen, keys) {
+        let results = keys;
+        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isConcealed ? !isOpen : true);
+        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(results));
+        return results;
     }
     /**
      * 合計飜数を取得する
@@ -1549,7 +1552,7 @@ function test() {
         }
     }
     console.log("--- 成立した役は以下の通りです! ---");
-    let yakuResult = e.getYakuResult(keys);
+    let yakuResult = e.getYakuResult(isOpen, keys);
     console.log(yakuResult);
     console.log("--- 合計飜数は以下の通りです! ---");
     const totalFaan = e.getTotalFaanValue(isOpen, yakuResult, bonusValue);
