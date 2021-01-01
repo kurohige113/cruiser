@@ -382,18 +382,20 @@ class MahjongScoreTable {
  * 役クラスの互換性定義
  */
 class MahjongYakuCompatible {
-    /** 競合しない */
+    /** 複合しない */
     static readonly NONE = 0;
     /** 下位互換 */
     static readonly LOWER = 1;
     /** 上位互換 */
     static readonly UPPER = 2;
+    /** 必ず複合する */
+    static readonly MUST = 3;
 }
 
 /**
  * 役クラスの複合設定インターフェース
  */
-interface MahjongYakuNotCombinedElement {
+interface MahjongYakuCombinedElement {
     element: MahjongYakuElement;
     type: MahjongYakuCompatible;
 }
@@ -407,7 +409,8 @@ class MahjongYakuElement {
     faanValue: number;//飜数
     isConcealed: boolean;//門前でのみ成立する役か
     isDownFaan: boolean;//食い下がりする役か
-    notCombinedElements: MahjongYakuNotCombinedElement[];//複合しない役
+    notCombinedElements: MahjongYakuCombinedElement[];//複合しない役
+    mustCombinedElements: MahjongYakuCombinedElement[];//必ず複合する役
 
     constructor(key: string, name: string, faanValue: number, isConcealed: boolean, isDownFaan: boolean) {
         this.key = key;
@@ -416,22 +419,38 @@ class MahjongYakuElement {
         this.isConcealed = isConcealed;
         this.isDownFaan = isDownFaan;
         this.notCombinedElements = [];
+        this.mustCombinedElements = [];
     }
 
     /**
-     * 受け取った役のキー配列と複合するかどうか
+     * 役が受け取った役のキー配列と複合する役かどうか
      * @param keys 役のキー配列
      */
     isCombined(keys: string[]) {
+        return this.hasMustYaku(keys) && this.hasUpperYaku(keys);
+    }
+
+    /**
+     * 役の必須チェック
+     * @param keys 役のキー配列
+     */
+    hasMustYaku(keys: string[]) {
+        const combineds = this.mustCombinedElements.filter(x => keys.includes(x.element.getKey()));
+        const isMust = combineds.findIndex(x => x.type == MahjongYakuCompatible.MUST) !== -1;
+        // 必須な複合役が必要ない または 必須な複合役がセットで存在する
+        return !this.mustCombinedElements.length || isMust;
+    }
+
+    /**
+     * 役の上位互換チェック
+     * @param keys 役のキー配列
+     */
+    hasUpperYaku(keys: string[]) {
         const combineds = this.notCombinedElements.filter(x => keys.includes(x.element.getKey()));
         const isNone = combineds.findIndex(x => x.type == MahjongYakuCompatible.NONE) !== -1;
-        const isOther = combineds.findIndex(x => x.type == MahjongYakuCompatible.UPPER) !== -1;
-
-        if (isNone || isOther) {
-            return false;
-        }
-
-        return true;
+        const isUpper = combineds.findIndex(x => x.type == MahjongYakuCompatible.UPPER) !== -1;
+        // 複合しない役が存在しない かつ 上位互換の役が存在しない
+        return !isNone && !isUpper;
     }
 
     getNotCombinedElements() {
@@ -440,6 +459,14 @@ class MahjongYakuElement {
 
     addNotCombinedElement(element: MahjongYakuElement, type: MahjongYakuCompatible) {
         this.notCombinedElements.push({'element':element, 'type':type});
+    }
+
+    getMustCombinedElements() {
+        return this.mustCombinedElements;
+    }
+
+    addMustCombinedElement(element: MahjongYakuElement, type: MahjongYakuCompatible) {
+        this.mustCombinedElements.push({'element':element, 'type':type});
     }
 
     hasError(isOpen: boolean): boolean {
@@ -708,6 +735,8 @@ class MahjongYakuList {
         first_turn_win.addNotCombinedElement(nine_gates, MahjongYakuCompatible.UPPER);
         first_turn_win.addNotCombinedElement(four_quads, MahjongYakuCompatible.UPPER);
         first_turn_win.addNotCombinedElement(blessing_of_heaven, MahjongYakuCompatible.UPPER);
+        first_turn_win.addMustCombinedElement(reach, MahjongYakuCompatible.MUST);
+        first_turn_win.addMustCombinedElement(double_reach, MahjongYakuCompatible.MUST);
 
         double_run.addNotCombinedElement(three_concealed_triples, MahjongYakuCompatible.UPPER);
         double_run.addNotCombinedElement(seven_pairs, MahjongYakuCompatible.UPPER);
@@ -1585,7 +1614,9 @@ class MahjongCalculator {
     //成立チェックして成立した役を取得する
     getYakuResult(isOpen: boolean, keys: string[]): string[] {
         let results =  keys;
-        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isConcealed ? !isOpen : true);     
+        //門前で成立する役のみにフィルタリング
+        results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isConcealed ? !isOpen : true); 
+        //複合可能な役のみにフィルタリング
         results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(results));
         return results;
     }
