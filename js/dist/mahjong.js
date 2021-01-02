@@ -1,14 +1,23 @@
 "use strict";
 /**
  * キーワード
- * faan: 翻
  * parent: 親
  * child: 子
  * open: 副露(フーロ)
+ * bonus: ドラ
  * score: 点数
  * point: 符数
- * bonus: ドラ
+ * faan: 翻
  * hand: 手牌
+ * concealed: 暗
+ * melded: 明
+ * tiles: 牌
+ * head: 雀頭
+ * element: 面子
+ * terminals: 老頭牌(ロートーハイ)
+ * honors: 字牌
+ * terminals_and_honors: 公九牌(ヤオチューハイ)
+ * simples: 中張牌(チュンチャンパイ)
  * ~Value: Number型
  */
 /**
@@ -1480,6 +1489,34 @@ class MahjongYakuList {
 }
 class Hand {
 }
+/** 上がり方クラス */
+class MahjongWinType {
+}
+/** ロン */
+MahjongWinType.RON = 0;
+/** 門前ロン */
+MahjongWinType.CONCEALED_RON = 1;
+/** ツモ */
+MahjongWinType.TSUMO = 2;
+/** 平和ツモ */
+MahjongWinType.ALL_RUNS_TSUMO = 3;
+/** チートイツ */
+MahjongWinType.SEVEN_PAIRS = 4;
+/** 待ち方クラス */
+class MahjongWaitingType {
+}
+/** リャンメン待ち */
+MahjongWaitingType.EITHER_OF_TWO_GATES = 0;
+/** カンチャン待ち */
+MahjongWaitingType.MIDDLE = 1;
+/** ペンチャン待ち */
+MahjongWaitingType.THREE_OR_SEVEN = 2;
+/** シャンポン待ち */
+MahjongWaitingType.TRIPLET = 3;
+/** タンキ待ち */
+MahjongWaitingType.PAIR = 4;
+/** ノベタン */
+MahjongWaitingType.BOTH_SIDES_OF_SEQUENCE = 5;
 /**
  * 計算機クラス
  */
@@ -1498,6 +1535,56 @@ class MahjongCalculator {
         //複合可能な役のみにフィルタリング
         results = results.filter(key => this.mahjongYakuList.getMahjongYakuElement(key).isCombined(results));
         return results;
+    }
+    /*
+    平和形ツモ,チートイツ形以外で最低符数は30符
+
+    /**
+     * 合計符数を取得する
+     *
+     * 合計符 = (基本符+上がり方+テンパイの種類+雀頭+面子)の1桁目切り上げ
+     * 基本符 = 20
+     * メンツ = 明刻2,4 | 暗刻4,8 | 明カン8,16 | 暗カン16,32 | その他0
+     * 雀頭 = 役牌2 | その他0
+     * テンパイの種類 = 上がりが1枚(ペンチャン、カンチャン、単騎、ノベタン)なら2 | その他0
+     * 上がり方 = 門前ロン10 | ツモ2 | その他0
+     * 平和形ツモ、チートイツ形は上記の計算式を全て無視してそれぞれ20符数,25符数固定
+     *
+     * @param winType 上がり方
+     * @param waitType テンパイの種類
+     * @param isHeadMadeOfValueTiles 雀頭が役牌かどうか
+     * @param numberOfElement メンツの数
+     */
+    getTotalPoint(winType, waitType, isHeadMadeOfValueTiles, numberOfSameElement) {
+        const basePoint = 20;
+        let winTypePoint = 0;
+        if (winType == MahjongWinType.SEVEN_PAIRS) {
+            return 25;
+        }
+        else if (winType == MahjongWinType.ALL_RUNS_TSUMO) {
+            return 20;
+        }
+        else if (winType == MahjongWinType.CONCEALED_RON) {
+            winTypePoint = 10;
+        }
+        else if (winType == MahjongWinType.TSUMO) {
+            winTypePoint = 2;
+        }
+        else {
+            winTypePoint = 0;
+        }
+        const waitingTypePoint = (waitType == MahjongWaitingType.EITHER_OF_TWO_GATES || waitType == MahjongWaitingType.TRIPLET) ? 0 : 2;
+        const headPoint = isHeadMadeOfValueTiles ? 2 : 0;
+        const elementsPoint = numberOfSameElement.concealed_triplets_simples * 4
+            + numberOfSameElement.concealed_triplets_terminals_and_honors * 8
+            + numberOfSameElement.melded_triplets_simples * 2
+            + numberOfSameElement.melded_triplets_terminals_and_honors * 4
+            + numberOfSameElement.concealed_fours_simples * 16
+            + numberOfSameElement.concealed_fours_terminals_and_honors * 32
+            + numberOfSameElement.melded_fours_simples * 8
+            + numberOfSameElement.melded_fours_terminals_and_honors * 16;
+        const totalPoint = basePoint + winTypePoint + waitingTypePoint + headPoint + elementsPoint;
+        return Math.ceil(totalPoint / 10) * 10;
     }
     /**
      * 合計飜数を取得する
@@ -1588,6 +1675,19 @@ function test() {
     console.log("--- 合計点数は以下の通りです! ---");
     const score = e.getScore(isParent, totalFaan, pointValue);
     console.log(score);
+    console.log("--- 合計符数は以下の通りです! ---");
+    const r = {
+        concealed_triplets_simples: 1,
+        concealed_triplets_terminals_and_honors: 1,
+        melded_triplets_simples: 0,
+        melded_triplets_terminals_and_honors: 0,
+        concealed_fours_simples: 0,
+        concealed_fours_terminals_and_honors: 0,
+        melded_fours_simples: 0,
+        melded_fours_terminals_and_honors: 0
+    };
+    const totalPoint = e.getTotalPoint(MahjongWinType.CONCEALED_RON, MahjongWaitingType.MIDDLE, false, r);
+    console.log(totalPoint);
     console.log("--- POPUPのHTMLを整形します! ---");
     yakuResult.forEach(key => {
         let [hasError, name] = e.mahjongYakuList.getMahjongYakuElement(key).getPrintFormat(isOpen);
