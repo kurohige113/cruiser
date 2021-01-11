@@ -1,0 +1,57 @@
+/*タブ5レイアウト*/
+#tab5_content_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 50px 50px 50px 50px;
+    grid-template-areas:
+        "tab5_content_container_areaA tab5_content_container_areaB tab5_content_container_areaC"
+        "tab5_content_container_areaD tab5_content_container_areaE tab5_content_container_areaF"
+        "tab5_content_container_areaG tab5_content_container_areaH tab5_content_container_areaI"
+        "tab5_content_container_areaJ tab5_content_container_areaK tab5_content_container_areaL" 
+        "tab5_content_container_areaM tab5_content_container_areaN tab5_content_container_areaO";
+}
+#tab5_content_container_itemA {
+    grid-area: tab5_content_container_areaA;
+}
+#tab5_content_container_itemB {
+    grid-area: tab5_content_container_areaB;
+}
+#tab5_content_container_itemC {
+    grid-area: tab5_content_container_areaC;
+}
+#tab5_content_container_itemD {
+    grid-area: tab5_content_container_areaD;
+}
+#tab5_content_container_itemE {
+    grid-area: tab5_content_container_areaE;
+}
+#tab5_content_container_itemF {
+    grid-area: tab5_content_container_areaF;
+}
+#tab5_content_container_itemG {
+    grid-area: tab5_content_container_areaG;
+}
+#tab5_content_container_itemH {
+    grid-area: tab5_content_container_areaH;
+}
+#tab5_content_container_itemI {
+    grid-area: tab5_content_container_areaI;
+}
+#tab5_content_container_itemJ {
+    grid-area: tab5_content_container_areaJ;
+}
+#tab5_content_container_itemK {
+    grid-area: tab5_content_container_areaK;
+}
+#tab5_content_container_itemL {
+    grid-area: tab5_content_container_areaL;
+}
+#tab5_content_container_itemM {
+    grid-area: tab5_content_container_areaM;
+}
+#tab5_content_container_itemN {
+    grid-area: tab5_content_container_areaN;
+}
+#tab5_content_container_itemO {
+    grid-area: tab5_content_container_areaO;
+}

@@ -1,0 +1,131 @@
+@import url("./faan/yaku/tabs.css");
+@import url("./common.css");
+
+body {
+    font: 16px/1.2 "Fira Sans", sans-serif;
+}
+
+/*タブ切り替え全体のスタイル*/
+.faan_tabs {
+    margin-top: 50px;
+    background-color: #fff;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+    margin: 0 auto;}
+  
+  /*タブのスタイル*/
+  .faan_tab_item {
+    width: calc(100%/2);
+    height: 50px;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  .faan_tab_item:hover {
+    opacity: 0.75;
+  }
+  
+  /*ラジオボタンを全て消す*/
+  input[name="faan_tab_item"] {
+    display: none;
+  }
+  
+  /*タブ切り替えの中身のスタイル*/
+  .faan_tab_content {
+    display: none;
+    clear: both;
+    overflow: hidden;
+  }
+  
+  /*選択されているタブのコンテンツのみを表示*/
+  #faan_tab1:checked ~ #faan_tab1_content,
+  #faan_tab2:checked ~ #faan_tab2_content,
+  #faan_tab3:checked ~ #faan_tab3_content,
+  #faan_tab4:checked ~ #faan_tab4_content,
+  #faan_tab5:checked ~ #faan_tab5_content,
+  #faan_tab6:checked ~ #faan_tab6_content {
+    display: block;
+  }
+  
+  /*選択されているタブのスタイルを変える*/
+  .faan_tabs input:checked + .faan_tab_item {
+    background-color: #167b86;
+    border-bottom: 3px solid #5ab4bd;
+    color: #fff;
+  }
+
+
+/*タブ7レイアウト*/
+#tab7_content_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 50px 50px;
+    grid-template-areas:
+        "tab7_content_container_areaA tab7_content_container_areaB tab7_content_container_areaC"
+        "tab7_content_container_areaD tab7_content_container_areaE tab7_content_container_areaF"
+        "tab7_content_container_areaG tab7_content_container_areaH tab7_content_container_areaI";
+    padding-top: 20px;
+}
+#tab7_content_container_itemA {
+    grid-area: tab7_content_container_areaA;
+}
+#tab7_content_container_itemB {
+    grid-area: tab7_content_container_areaB;
+}
+#tab7_content_container_itemC {
+    grid-area: tab7_content_container_areaC;
+}
+#tab7_content_container_itemD {
+    grid-area: tab7_content_container_areaD;
+}
+#tab7_content_container_itemE {
+    grid-area: tab7_content_container_areaE;
+}
+#tab7_content_container_itemF {
+    grid-area: tab7_content_container_areaF;
+}
+#tab7_content_container_itemG {
+    grid-area: tab7_content_container_areaG;
+}
+#tab7_content_container_itemH {
+    grid-area: tab7_content_container_areaH;
+}
+#tab7_content_container_itemI {
+    grid-area: tab7_content_container_areaI;
+}
+
+/*タブ8レイアウト*/
+#tab8_content_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px;
+    grid-template-areas:
+        "tab8_content_container_areaA tab8_content_container_areaB";
+}
+#tab8_content_container_itemA {
+    grid-area: tab8_content_container_areaA;
+}
+#tab8_content_container_itemB {
+    grid-area: tab8_content_container_areaB;
+}
+
+/*タブ9レイアウト*/
+#tab9_content_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50px;
+    grid-template-areas:
+        "tab9_content_container_areaA tab9_content_container_areaB";
+}
+#tab9_content_container_itemA {
+    grid-area: tab9_content_container_areaA;
+}
+#tab9_content_container_itemB {
+    grid-area: tab9_content_container_areaB;
+}

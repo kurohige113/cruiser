@@ -1,0 +1,66 @@
+/*タブのスタイル*/
+@import url("./tab1.css");
+@import url("./tab2.css");
+@import url("./tab3.css");
+@import url("./tab4.css");
+@import url("./tab5.css");
+@import url("./tab6.css");
+
+/*タブ切り替え全体のスタイル*/
+.faan_yaku_tabs {
+    margin-top: 50px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
+    margin: 0 auto;}
+  
+  /*タブのスタイル*/
+  .faan_yaku_tab_item {
+    width: calc(100%/6);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  .faan_yaku_tab_item:hover {
+    opacity: 0.75;
+  }
+  
+  /*ラジオボタンを全て消す*/
+  input[name="faan_yaku_tab_item"] {
+    display: none;
+  }
+  
+  /*タブ切り替えの中身のスタイル*/
+  .faan_yaku_tab_content {
+    display: none;
+    padding: 20px 20px 0;
+    clear: both;
+    overflow: hidden;
+  }
+  
+  /*選択されているタブのコンテンツのみを表示*/
+  #faan_yaku_tab1:checked ~ #faan_yaku_tab1_content,
+  #faan_yaku_tab2:checked ~ #faan_yaku_tab2_content,
+  #faan_yaku_tab3:checked ~ #faan_yaku_tab3_content,
+  #faan_yaku_tab4:checked ~ #faan_yaku_tab4_content,
+  #faan_yaku_tab5:checked ~ #faan_yaku_tab5_content,
+  #faan_yaku_tab6:checked ~ #faan_yaku_tab6_content {
+    display: block;
+  }
+  
+  /*選択されているタブのスタイルを変える*/
+  .faan_yaku_tabs input:checked + .faan_yaku_tab_item {
+    background-color: #5ab4bd;
+    color: #fff;
+  }
+  
+  

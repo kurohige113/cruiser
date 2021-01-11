@@ -1,0 +1,83 @@
+/*ボタン形式選択肢の共通スタイル*/
+.common_checkbox{
+    display:inline-block;
+    position: relative;
+    width: 100%;
+}
+.common_checkbox input{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+.common_checkbox label{
+    box-sizing: border-box;
+    width: 90%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background: #eee;
+    display: inline-block;
+    cursor: pointer;
+    transition: .3s;
+}
+.common_checkbox label:hover {
+    box-shadow: 0 0 4px #5ab4bd;
+}
+.common_checkbox input:checked + label{
+    background: #5ab4bd;
+    color: #FFF;
+}
+
+
+/*ステータスのスタイル*/
+.status_radio{
+    display:inline-block;
+    position: relative;
+    width: 100%;
+}
+.status_radio input{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+.status_radio label{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px;
+    /*border-radius: 10px;*/
+    background: #eee;
+    display: inline-block;
+    cursor: pointer;
+    transition: .3s;
+}
+.status_radio label:hover {
+    box-shadow: 0 0 4px #5ab4bd;
+}
+.status_radio input:checked + label{
+    background: #5ab4bd;
+    color: #FFF;
+}
+
+/**/
+h2 {
+    position: relative;
+    padding: .25em 0 .5em .75em;
+    border-left: 6px solid #ccc;
+  }
+  h2::before {
+    position: absolute;
+    left: -6px;
+    bottom: 0;
+    content: '';
+    width: 6px;
+    height: 50%;
+    background-color: #3498db;
+  }
+  h2::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #ccc;
+  }
