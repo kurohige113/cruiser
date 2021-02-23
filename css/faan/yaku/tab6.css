@@ -9,6 +9,8 @@
         "tab6_content_container_areaG tab6_content_container_areaH tab6_content_container_areaI"
         "tab6_content_container_areaJ tab6_content_container_areaK tab6_content_container_areaL" 
         "tab6_content_container_areaM tab6_content_container_areaN tab6_content_container_areaO";
+    grid-row-gap: 1px;
+    grid-column-gap: 3px; 
 }
 #tab6_content_container_itemA {
     grid-area: tab6_content_container_areaA;

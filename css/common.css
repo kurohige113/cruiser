@@ -11,7 +11,7 @@
 }
 .common_checkbox label{
     box-sizing: border-box;
-    width: 90%;
+    width: 100%;
     padding: 10px 10px;
     border-radius: 10px;
     background: #eee;
@@ -56,28 +56,3 @@
     background: #5ab4bd;
     color: #FFF;
 }
-
-/**/
-h2 {
-    position: relative;
-    padding: .25em 0 .5em .75em;
-    border-left: 6px solid #ccc;
-  }
-  h2::before {
-    position: absolute;
-    left: -6px;
-    bottom: 0;
-    content: '';
-    width: 6px;
-    height: 50%;
-    background-color: #3498db;
-  }
-  h2::after {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: '';
-    width: 100%;
-    height: 0;
-    border-bottom: 1px solid #ccc;
-  }

@@ -1,8 +1,59 @@
 @import url("./faan/yaku/tabs.css");
 @import url("./common.css");
 
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+
+
 body {
-    font: 16px/1.2 "Fira Sans", sans-serif;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+header {
+    background: #333333;
+    color: #ffffff;
+    height: 40px;
+}
+
+main {
+    padding: 8px;
+    flex: 1;
+}
+
+footer {
+    color: white;
+    background-color: #167b86;
+    text-align: center;
+    width: 100%;
+}
+
+h3 {
+    position: relative;
+    padding: .25em 0 .25em .5em;
+    border-left: 6px solid #ccc;
+    margin-block-start: 0.25em;
+    margin-block-end: 0.25em;
+}
+h3::before {
+    position: absolute;
+    left: -6px;
+    bottom: 0;
+    content: '';
+    width: 6px;
+    height: 50%;
+    background-color: #167b86;
+}
+h3::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #ccc;
 }
 
 /*タブ切り替え全体のスタイル*/
@@ -10,10 +61,11 @@ body {
     margin-top: 50px;
     background-color: #fff;
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);*/
-    margin: 0 auto;}
+    margin: 0 auto;
+}
   
-  /*タブのスタイル*/
-  .faan_tab_item {
+/*タブのスタイル*/
+.faan_tab_item {
     width: calc(100%/2);
     height: 50px;
     background-color: #d9d9d9;
@@ -26,39 +78,39 @@ body {
     text-align: center;
     font-weight: bold;
     transition: all 0.2s ease;
-  }
-  .faan_tab_item:hover {
-    opacity: 0.75;
-  }
+}
+.faan_tab_item:hover {
+  opacity: 0.75;
+}
   
-  /*ラジオボタンを全て消す*/
-  input[name="faan_tab_item"] {
-    display: none;
-  }
+/*ラジオボタンを全て消す*/
+input[name="faan_tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.faan_tab_content {
+  display: none;
+  clear: both;
+  overflow: hidden;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#faan_tab1:checked ~ #faan_tab1_content,
+#faan_tab2:checked ~ #faan_tab2_content,
+#faan_tab3:checked ~ #faan_tab3_content,
+#faan_tab4:checked ~ #faan_tab4_content,
+#faan_tab5:checked ~ #faan_tab5_content,
+#faan_tab6:checked ~ #faan_tab6_content {
+  display: block;
+}
   
-  /*タブ切り替えの中身のスタイル*/
-  .faan_tab_content {
-    display: none;
-    clear: both;
-    overflow: hidden;
-  }
-  
-  /*選択されているタブのコンテンツのみを表示*/
-  #faan_tab1:checked ~ #faan_tab1_content,
-  #faan_tab2:checked ~ #faan_tab2_content,
-  #faan_tab3:checked ~ #faan_tab3_content,
-  #faan_tab4:checked ~ #faan_tab4_content,
-  #faan_tab5:checked ~ #faan_tab5_content,
-  #faan_tab6:checked ~ #faan_tab6_content {
-    display: block;
-  }
-  
-  /*選択されているタブのスタイルを変える*/
-  .faan_tabs input:checked + .faan_tab_item {
-    background-color: #167b86;
-    border-bottom: 3px solid #5ab4bd;
-    color: #fff;
-  }
+/*選択されているタブのスタイルを変える*/
+.faan_tabs input:checked + .faan_tab_item {
+  background-color: #167b86;
+  border-bottom: 3px solid #5ab4bd;
+  color: #fff;
+}
 
 
 /*タブ7レイアウト*/
@@ -70,7 +122,9 @@ body {
         "tab7_content_container_areaA tab7_content_container_areaB tab7_content_container_areaC"
         "tab7_content_container_areaD tab7_content_container_areaE tab7_content_container_areaF"
         "tab7_content_container_areaG tab7_content_container_areaH tab7_content_container_areaI";
-    padding-top: 20px;
+    padding-top: 5px;
+    grid-row-gap: 1px;
+    grid-column-gap: 3px;
 }
 #tab7_content_container_itemA {
     grid-area: tab7_content_container_areaA;

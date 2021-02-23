@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <title>Hello World.</title>
+    <title>麻雀点数計算機</title>
+    <meta name=”description” content=”麻雀初心者でも簡単に点数計算ができる便利な計算機。”>
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -93,136 +94,149 @@
     [計算][クリア]
     ------------------------
     -->
-    <h2>基本情報</h2>
-    <div id="tab8_content_container">
-        <div id="tab8_content_container_itemA"><div class="status_radio"><input value="0" type="radio" name="status1" id="status1-1" checked><label for="status1-1">親</label></div></div>
-        <div id="tab8_content_container_itemB"><div class="status_radio"><input value="1" type="radio" name="status1" id="status1-2"><label for="status1-2">子</label></div></div>
-    </div>
-    <div id="tab9_content_container">
-        <div id="tab9_content_container_itemB"><div class="status_radio"><input value="1" type="radio" name="status2" id="status2-1" checked><label for="status2-1">鳴き無し</label></div></div>
-        <div id="tab9_content_container_itemA"><div class="status_radio"><input value="0" type="radio" name="status2" id="status2-2"><label for="status2-2">鳴き有り</label></div></div>
-    </div>
 
-    <h2>飜数</h2>
-    <div class="faan_tabs">
-        <input id="faan_tab1" type="radio" name="faan_tab_item" checked>
-        <label class="faan_tab_item" for="faan_tab1">手動入力</label>
-        <input id="faan_tab2" type="radio" name="faan_tab_item">
-        <label class="faan_tab_item" for="faan_tab2">役名から飜数を計算</label>
+    <header id="header">
+        <p>toy-box</p>
+    </header>
 
-        <div class="faan_tab_content" id="faan_tab1_content">
-            <div id="tab7_content_container">
-                <div id="tab7_content_container_itemA"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan1"><label for="faan1">1</label></div></div>
-                <div id="tab7_content_container_itemB"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan2"><label for="faan2">2</label></div></div>
-                <div id="tab7_content_container_itemC"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan3"><label for="faan3">3</label></div></div>
-                <div id="tab7_content_container_itemD"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan4"><label for="faan4">4</label></div></div>
-                <div id="tab7_content_container_itemE"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan5"><label for="faan5">5</label></div></div>
-                <div id="tab7_content_container_itemF"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan6-7"><label for="faan6-7">6,7</label></div></div>
-                <div id="tab7_content_container_itemG"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan8-10"><label for="faan8-10">8~10</label></div></div>
-                <div id="tab7_content_container_itemH"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan11-12"><label for="faan11-12">11,12</label></div></div>
-                <div id="tab7_content_container_itemI"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan13"><label for="faan13">13~</label></div></div>
+    <main>
+        <h1>麻雀点数計算機</h1>
+        <h3>基本情報選択</h3>
+        <div id="tab8_content_container">
+            <div id="tab8_content_container_itemA"><div class="status_radio"><input value="0" type="radio" name="status1" id="status1-1"><label for="status1-1">親</label></div></div>
+            <div id="tab8_content_container_itemB"><div class="status_radio"><input value="1" type="radio" name="status1" id="status1-2" checked><label for="status1-2">子</label></div></div>
+        </div>
+        <div id="tab9_content_container">
+            <div id="tab9_content_container_itemB"><div class="status_radio"><input value="1" type="radio" name="status2" id="status2-1" checked><label for="status2-1">鳴き無し</label></div></div>
+            <div id="tab9_content_container_itemA"><div class="status_radio"><input value="0" type="radio" name="status2" id="status2-2"><label for="status2-2">鳴き有り</label></div></div>
+        </div>
+
+        <h3>飜数</h3>
+        <div class="faan_tabs">
+            <input id="faan_tab1" type="radio" name="faan_tab_item" checked>
+            <label class="faan_tab_item" for="faan_tab1">手動入力</label>
+            <input id="faan_tab2" type="radio" name="faan_tab_item">
+            <label class="faan_tab_item" for="faan_tab2">役名から飜数を計算</label>
+        
+            <div class="faan_tab_content" id="faan_tab1_content">
+                <div id="tab7_content_container">
+                    <div id="tab7_content_container_itemA"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan1"><label for="faan1">1</label></div></div>
+                    <div id="tab7_content_container_itemB"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan2"><label for="faan2">2</label></div></div>
+                    <div id="tab7_content_container_itemC"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan3"><label for="faan3">3</label></div></div>
+                    <div id="tab7_content_container_itemD"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan4"><label for="faan4">4</label></div></div>
+                    <div id="tab7_content_container_itemE"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan5"><label for="faan5">5</label></div></div>
+                    <div id="tab7_content_container_itemF"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan6-7"><label for="faan6-7">6,7</label></div></div>
+                    <div id="tab7_content_container_itemG"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan8-10"><label for="faan8-10">8~10</label></div></div>
+                    <div id="tab7_content_container_itemH"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan11-12"><label for="faan11-12">11,12</label></div></div>
+                    <div id="tab7_content_container_itemI"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="faan13"><label for="faan13">13~</label></div></div>
+                </div>
+            </div>
+            <div class="faan_tab_content" id="faan_tab2_content">
+                <div class="faan_yaku_tabs">
+                    <input id="faan_yaku_tab1" type="radio" name="faan_yaku_tab_item" checked>
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab1">1飜</label>
+                    <input id="faan_yaku_tab2" type="radio" name="faan_yaku_tab_item">
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab2">2飜</label>
+                    <input id="faan_yaku_tab3" type="radio" name="faan_yaku_tab_item">
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab3">3飜</label>
+                    <input id="faan_yaku_tab4" type="radio" name="faan_yaku_tab_item">
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab4">6飜</label>
+                    <input id="faan_yaku_tab5" type="radio" name="faan_yaku_tab_item">
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab5">13飜</label>
+                    <input id="faan_yaku_tab6" type="radio" name="faan_yaku_tab_item">
+                    <label class="faan_yaku_tab_item" for="faan_yaku_tab6">ドラ</label>
+        
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab1_content">
+                        <div id="tab1_content_container">
+                            <div id="tab1_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="reach" ><label for="reach">立直</label></div></div> 
+                            <div id="tab1_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="concealed_self_draw"><label for="concealed_self_draw">門前自摸</label></div></div> 
+                            <div id="tab1_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="first_turn_win"><label for="first_turn_win">一発</label></div></div> 
+                            <div id="tab1_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_haku"><label for="value_tiles_haku">白</label></div></div> 
+                            <div id="tab1_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_hatsu"><label for="value_tiles_hatsu">撥</label></div></div> 
+                            <div id="tab1_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_chun"><label for="value_tiles_chun">中</label></div></div> 
+                            <div id="tab1_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_own_wind"><label for="value_tiles_own_wind">場風</label></div></div> 
+                            <div id="tab1_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_round_wind"><label for="value_tiles_round_wind">自風</label></div></div> 
+                            <div id="tab1_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="kings_tile_draw"><label for="kings_tile_draw">嶺上開花</label></div></div> 
+                            <div id="tab1_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_simples"><label for="all_simples">断ヤオ九</label></div></div> 
+                            <div id="tab1_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_runs"><label for="all_runs">平和</label></div></div> 
+                            <div id="tab1_content_container_itemL"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="double_run"><label for="double_run">一盃口</label></div></div> 
+                            <div id="tab1_content_container_itemM"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="final_tile_win_own"><label for="final_tile_win_own">海底摸月</label></div></div> 
+                            <div id="tab1_content_container_itemN"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="final_tile_win_other"><label for="final_tile_win_other">河底撈魚</label></div></div> 
+                            <div id="tab1_content_container_itemO"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="add_a_quad"><label for="add_a_quad">搶槓</label></div></div> 
+                        </div>
+                    </div>
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab2_content">
+                        <div id="tab2_content_container">
+                            <div id="tab2_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="double_reach" ><label for="double_reach">二重立直</label></div></div> 
+                            <div id="tab2_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="seven_pairs"><label for="seven_pairs">七対子</label></div></div> 
+                            <div id="tab2_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_triples"><label for="all_triples">対々和</label></div></div> 
+                            <div id="tab2_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="full_straight"><label for="full_straight">一気通貫</label></div></div> 
+                            <div id="tab2_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_color_runs"><label for="three_color_runs">三色同順</label></div></div> 
+                            <div id="tab2_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_color_triples"><label for="three_color_triples">三色同刻</label></div></div> 
+                            <div id="tab2_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="mixed_outside_hand"><label for="mixed_outside_hand">全帯</label></div></div> 
+                            <div id="tab2_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_terminals_and_honors"><label for="all_terminals_and_honors">混老頭</label></div></div> 
+                            <div id="tab2_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_concealed_triples"><label for="three_concealed_triples">三暗刻</label></div></div> 
+                            <div id="tab2_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_quads"><label for="three_quads">三槓子</label></div></div> 
+                            <div id="tab2_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="little_dragons"><label for="little_dragons">小三元</label></div></div> 
+                        </div>
+                    </div>
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab3_content">
+                        <div id="tab3_content_container">
+                            <div id="tab3_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="half_flush"><label for="half_flush">混一色</label></div></div> 
+                            <div id="tab3_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="pure_outside_hand"><label for="pure_outside_hand">純全帯幺</label></div></div> 
+                            <div id="tab3_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="twin_double_runs"><label for="twin_double_runs">二盃口</label></div></div> 
+                        </div>
+                    </div>
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab4_content">
+                        <div id="tab4_content_container">
+                            <div id="tab4_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="full_flush"><label for="full_flush">清一色</label></div></div> 
+                        </div>
+                    </div>
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab5_content">
+                        <div id="tab5_content_container">
+                            <div id="tab5_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_concealed_triples"><label for="four_concealed_triples">四暗刻</label></div></div> 
+                            <div id="tab5_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="thirteen_orphans"><label for="thirteen_orphans">国士無双</label></div></div> 
+                            <div id="tab5_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="big_dragons"><label for="big_dragons">大三元</label></div></div> 
+                            <div id="tab5_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_terminals"><label for="all_terminals">清老頭</label></div></div> 
+                            <div id="tab5_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_honors"><label for="all_honors">字一色</label></div></div>                 
+                            <div id="tab5_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_winds"><label for="four_winds">四喜和</label></div></div> 
+                            <div id="tab5_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_green"><label for="all_green">緑一色</label></div></div> 
+                            <div id="tab5_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_quads"><label for="four_quads">四槓子</label></div></div> 
+                            <div id="tab5_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="nine_gates"><label for="nine_gates">九蓮宝燈</label></div></div> 
+                            <div id="tab5_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="blessing_of_earth"><label for="blessing_of_earth">地和</label></div></div> 
+                            <div id="tab5_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="blessing_of_heaven"><label for="blessing_of_heaven">天和</label></div></div> 
+                        </div>
+                    </div>
+                    <div class="faan_yaku_tab_content" id="faan_yaku_tab6_content">
+                        <div id="tab6_content_container">
+                            <div id="tab6_content_container_itemA"><div class="common_checkbox"><input value="0" type="radio" name="bonus" id="dora0"><label for="dora0">0</label></div></div>
+                            <div id="tab6_content_container_itemB"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="dora1"><label for="dora1">1</label></div></div>
+                            <div id="tab6_content_container_itemC"><div class="common_checkbox"><input value="2" type="radio" name="bonus" id="dora2"><label for="dora2">2</label></div></div>
+                            <div id="tab6_content_container_itemD"><div class="common_checkbox"><input value="3" type="radio" name="bonus" id="dora3"><label for="dora3">3</label></div></div>
+                            <div id="tab6_content_container_itemE"><div class="common_checkbox"><input value="4" type="radio" name="bonus" id="dora4"><label for="dora4">4</label></div></div>
+                            <div id="tab6_content_container_itemF"><div class="common_checkbox"><input value="5" type="radio" name="bonus" id="dora5"><label for="dora5">5</label></div></div>
+                            <div id="tab6_content_container_itemG"><div class="common_checkbox"><input value="6" type="radio" name="bonus" id="dora6"><label for="dora6">6</label></div></div>
+                            <div id="tab6_content_container_itemH"><div class="common_checkbox"><input value="7" type="radio" name="bonus" id="dora7"><label for="dora7">7</label></div></div>
+                            <div id="tab6_content_container_itemI"><div class="common_checkbox"><input value="8" type="radio" name="bonus" id="dora8"><label for="dora8">8</label></div></div>
+                            <div id="tab6_content_container_itemJ"><div class="common_checkbox"><input value="9" type="radio" name="bonus" id="dora9"><label for="dora9">9</label></div></div>
+                            <div id="tab6_content_container_itemK"><div class="common_checkbox"><input value="10" type="radio" name="bonus" id="dora10"><label for="dora10">10</label></div></div>
+                            <div id="tab6_content_container_itemL"><div class="common_checkbox"><input value="11" type="radio" name="bonus" id="dora11"><label for="dora11">11</label></div></div>
+                            <div id="tab6_content_container_itemM"><div class="common_checkbox"><input value="12" type="radio" name="bonus" id="dora12"><label for="dora12">12</label></div></div>
+                            <div id="tab6_content_container_itemN"><div class="common_checkbox"><input value="13" type="radio" name="bonus" id="dora13"><label for="dora13">13</label></div></div>
+                            <div id="tab6_content_container_itemO"><div class="common_checkbox"><input value="14" type="radio" name="bonus" id="dora14"><label for="dora14">14</label></div></div>
+                        </div>
+                    </div>
+                </div>            
             </div>
         </div>
-        <div class="faan_tab_content" id="faan_tab2_content">
-            <div class="faan_yaku_tabs">
-                <input id="faan_yaku_tab1" type="radio" name="faan_yaku_tab_item" checked>
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab1">1飜</label>
-                <input id="faan_yaku_tab2" type="radio" name="faan_yaku_tab_item">
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab2">2飜</label>
-                <input id="faan_yaku_tab3" type="radio" name="faan_yaku_tab_item">
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab3">3飜</label>
-                <input id="faan_yaku_tab4" type="radio" name="faan_yaku_tab_item">
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab4">6飜</label>
-                <input id="faan_yaku_tab5" type="radio" name="faan_yaku_tab_item">
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab5">13飜</label>
-                <input id="faan_yaku_tab6" type="radio" name="faan_yaku_tab_item">
-                <label class="faan_yaku_tab_item" for="faan_yaku_tab6">ドラ</label>
-        
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab1_content">
-                    <div id="tab1_content_container">
-                        <div id="tab1_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="reach" ><label for="reach">立直</label></div></div> 
-                        <div id="tab1_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="concealed_self_draw"><label for="concealed_self_draw">門前自摸</label></div></div> 
-                        <div id="tab1_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="first_turn_win"><label for="first_turn_win">一発</label></div></div> 
-                        <div id="tab1_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_haku"><label for="value_tiles_haku">白</label></div></div> 
-                        <div id="tab1_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_hatsu"><label for="value_tiles_hatsu">撥</label></div></div> 
-                        <div id="tab1_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_chun"><label for="value_tiles_chun">中</label></div></div> 
-                        <div id="tab1_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_own_wind"><label for="value_tiles_own_wind">場風</label></div></div> 
-                        <div id="tab1_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="value_tiles_round_wind"><label for="value_tiles_round_wind">自風</label></div></div> 
-                        <div id="tab1_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="kings_tile_draw"><label for="kings_tile_draw">嶺上開花</label></div></div> 
-                        <div id="tab1_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_simples"><label for="all_simples">断ヤオ九</label></div></div> 
-                        <div id="tab1_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_runs"><label for="all_runs">平和</label></div></div> 
-                        <div id="tab1_content_container_itemL"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="double_run"><label for="double_run">一盃口</label></div></div> 
-                        <div id="tab1_content_container_itemM"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="final_tile_win_own"><label for="final_tile_win_own">海底摸月</label></div></div> 
-                        <div id="tab1_content_container_itemN"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="final_tile_win_other"><label for="final_tile_win_other">河底撈魚</label></div></div> 
-                        <div id="tab1_content_container_itemO"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="add_a_quad"><label for="add_a_quad">搶槓</label></div></div> 
-                    </div>
-                </div>
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab2_content">
-                    <div id="tab2_content_container">
-                        <div id="tab2_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="double_reach" ><label for="double_reach">二重立直</label></div></div> 
-                        <div id="tab2_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="seven_pairs"><label for="seven_pairs">七対子</label></div></div> 
-                        <div id="tab2_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_triples"><label for="all_triples">対々和</label></div></div> 
-                        <div id="tab2_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="full_straight"><label for="full_straight">一気通貫</label></div></div> 
-                        <div id="tab2_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_color_runs"><label for="three_color_runs">三色同順</label></div></div> 
-                        <div id="tab2_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_color_triples"><label for="three_color_triples">三色同刻</label></div></div> 
-                        <div id="tab2_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="mixed_outside_hand"><label for="mixed_outside_hand">全帯</label></div></div> 
-                        <div id="tab2_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_terminals_and_honors"><label for="all_terminals_and_honors">混老頭</label></div></div> 
-                        <div id="tab2_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_concealed_triples"><label for="three_concealed_triples">三暗刻</label></div></div> 
-                        <div id="tab2_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="three_quads"><label for="three_quads">三槓子</label></div></div> 
-                        <div id="tab2_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="little_dragons"><label for="little_dragons">小三元</label></div></div> 
-                    </div>
-                </div>
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab3_content">
-                    <div id="tab3_content_container">
-                        <div id="tab3_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="half_flush"><label for="half_flush">混一色</label></div></div> 
-                        <div id="tab3_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="pure_outside_hand"><label for="pure_outside_hand">純全帯幺</label></div></div> 
-                        <div id="tab3_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="twin_double_runs"><label for="twin_double_runs">二盃口</label></div></div> 
-                    </div>
-                </div>
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab4_content">
-                    <div id="tab4_content_container">
-                        <div id="tab4_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="full_flush"><label for="full_flush">清一色</label></div></div> 
-                    </div>
-                </div>
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab5_content">
-                    <div id="tab5_content_container">
-                        <div id="tab5_content_container_itemA"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_concealed_triples"><label for="four_concealed_triples">四暗刻</label></div></div> 
-                        <div id="tab5_content_container_itemB"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="thirteen_orphans"><label for="thirteen_orphans">国士無双</label></div></div> 
-                        <div id="tab5_content_container_itemC"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="big_dragons"><label for="big_dragons">大三元</label></div></div> 
-                        <div id="tab5_content_container_itemD"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_terminals"><label for="all_terminals">清老頭</label></div></div> 
-                        <div id="tab5_content_container_itemE"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_honors"><label for="all_honors">字一色</label></div></div>                 
-                        <div id="tab5_content_container_itemF"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_winds"><label for="four_winds">四喜和</label></div></div> 
-                        <div id="tab5_content_container_itemG"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="all_green"><label for="all_green">緑一色</label></div></div> 
-                        <div id="tab5_content_container_itemH"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="four_quads"><label for="four_quads">四槓子</label></div></div> 
-                        <div id="tab5_content_container_itemI"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="nine_gates"><label for="nine_gates">九蓮宝燈</label></div></div> 
-                        <div id="tab5_content_container_itemJ"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="blessing_of_earth"><label for="blessing_of_earth">地和</label></div></div> 
-                        <div id="tab5_content_container_itemK"><div class="common_checkbox"><input value="1" type="checkbox" name="options" id="blessing_of_heaven"><label for="blessing_of_heaven">天和</label></div></div> 
-                    </div>
-                </div>
-                <div class="faan_yaku_tab_content" id="faan_yaku_tab6_content">
-                    <div id="tab6_content_container">
-                        <div id="tab6_content_container_itemA"><div class="common_checkbox"><input value="0" type="radio" name="bonus" id="dora0"><label for="dora0">0</label></div></div>
-                        <div id="tab6_content_container_itemB"><div class="common_checkbox"><input value="1" type="radio" name="bonus" id="dora1"><label for="dora1">1</label></div></div>
-                        <div id="tab6_content_container_itemC"><div class="common_checkbox"><input value="2" type="radio" name="bonus" id="dora2"><label for="dora2">2</label></div></div>
-                        <div id="tab6_content_container_itemD"><div class="common_checkbox"><input value="3" type="radio" name="bonus" id="dora3"><label for="dora3">3</label></div></div>
-                        <div id="tab6_content_container_itemE"><div class="common_checkbox"><input value="4" type="radio" name="bonus" id="dora4"><label for="dora4">4</label></div></div>
-                        <div id="tab6_content_container_itemF"><div class="common_checkbox"><input value="5" type="radio" name="bonus" id="dora5"><label for="dora5">5</label></div></div>
-                        <div id="tab6_content_container_itemG"><div class="common_checkbox"><input value="6" type="radio" name="bonus" id="dora6"><label for="dora6">6</label></div></div>
-                        <div id="tab6_content_container_itemH"><div class="common_checkbox"><input value="7" type="radio" name="bonus" id="dora7"><label for="dora7">7</label></div></div>
-                        <div id="tab6_content_container_itemI"><div class="common_checkbox"><input value="8" type="radio" name="bonus" id="dora8"><label for="dora8">8</label></div></div>
-                        <div id="tab6_content_container_itemJ"><div class="common_checkbox"><input value="9" type="radio" name="bonus" id="dora9"><label for="dora9">9</label></div></div>
-                        <div id="tab6_content_container_itemK"><div class="common_checkbox"><input value="10" type="radio" name="bonus" id="dora10"><label for="dora10">10</label></div></div>
-                        <div id="tab6_content_container_itemL"><div class="common_checkbox"><input value="11" type="radio" name="bonus" id="dora11"><label for="dora11">11</label></div></div>
-                        <div id="tab6_content_container_itemM"><div class="common_checkbox"><input value="12" type="radio" name="bonus" id="dora12"><label for="dora12">12</label></div></div>
-                        <div id="tab6_content_container_itemN"><div class="common_checkbox"><input value="13" type="radio" name="bonus" id="dora13"><label for="dora13">13</label></div></div>
-                        <div id="tab6_content_container_itemO"><div class="common_checkbox"><input value="14" type="radio" name="bonus" id="dora14"><label for="dora14">14</label></div></div>
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </div>
 
-    <h2>符数</h2>
+        <h3>符数</h3>
+
+    </main>
+
+    <footer id="footer">
+        <p>&copy; kurohige-toybox. 2021.</p> 
+    </footer>
 
 
     <!--

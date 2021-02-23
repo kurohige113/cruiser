@@ -42,7 +42,7 @@
   /*タブ切り替えの中身のスタイル*/
   .faan_yaku_tab_content {
     display: none;
-    padding: 20px 20px 0;
+    padding: 5px 0 0;
     clear: both;
     overflow: hidden;
   }
